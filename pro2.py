@@ -168,6 +168,8 @@ def main():
     for v in range (2):
         for month in range(1, 13):        
             for days in calendari.itermonthdates(inici.year+v, month):
+                if(days.month != month): 
+                    continue
                 if(days.weekday() == 0):
                     done = 0
                     for p in range(len(horesFetesAssignatures)):
@@ -176,7 +178,7 @@ def main():
                             if(l == 0):
                                 l = 1
                             wsout.cell(pos[p]+l+1, 5+setmana).border = bordertop
-                if(days.month != month or days < inici or days in festes or days.weekday() > 4):
+                if(days < inici or days in festes or days.weekday() > 4):
                     continue
                 if(days > final):
                     break
